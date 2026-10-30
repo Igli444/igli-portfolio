@@ -1,25 +1,38 @@
 @import "tailwindcss";
 
 :root {
-  --background: #09090b;
-  --surface: #111113;
-  --foreground: #f4f4f5;
-  --muted: #a1a1aa;
-  --border: #27272a;
-  --accent: #34d399;
-  --accent-soft: #0f2e22;
+  --background: #0a0908;
+  --surface: #14110d;
+  --surface-raised: #18140f;
+  --foreground: #f3ede2;
+  --muted: #a69c8d;
+  --muted-soft: #78705f;
+  --border: #272019;
+  --border-soft: #1c170f;
+  --accent: #d98f4e;
+  --accent-strong: #f0a85e;
+  --accent-soft: rgba(217, 143, 78, 0.12);
+  --accent-ink: #1c130a;
+  --teal: #7ea69e;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-muted-soft: var(--muted-soft);
   --color-border: var(--border);
+  --color-border-soft: var(--border-soft);
   --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
   --color-accent-soft: var(--accent-soft);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent-ink: var(--accent-ink);
+  --color-teal: var(--teal);
+  --font-display: var(--font-bricolage);
+  --font-sans: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
 }
 
 html {
@@ -30,19 +43,65 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  position: relative;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+.font-display {
+  font-family: var(--font-display), ui-sans-serif, sans-serif;
 }
 
 .text-gradient {
-  background: linear-gradient(90deg, #f4f4f5 0%, #a1a1aa 100%);
+  background: linear-gradient(100deg, #f3ede2 10%, #a69c8d 70%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.bg-grid {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
+.bg-grain {
+  position: relative;
+}
+.bg-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.bg-mesh {
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(217, 143, 78, 0.16), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 10%, rgba(126, 166, 158, 0.08), transparent 55%),
+    radial-gradient(ellipse 900px 600px at 50% 100%, rgba(217, 143, 78, 0.07), transparent 60%);
+}
+
+.divider-diagonal {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+}
+
+.ring-glow {
+  box-shadow: 0 0 0 1px var(--border), 0 20px 60px -20px rgba(217, 143, 78, 0.15);
 }
