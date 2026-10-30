@@ -2,6 +2,9 @@
 
 import { motion } from "motion/react";
 import NetworkBackground from "./components/NetworkBackground";
+import LatticeScene from "./components/LatticeScene";
+import PhotoFrame from "./components/PhotoFrame";
+import BigReveal from "./components/BigReveal";
 import ScrollProgress from "./components/ScrollProgress";
 import Counter from "./components/Counter";
 import Magnetic from "./components/Magnetic";
@@ -114,73 +117,76 @@ export default function Home() {
         {/* Hero */}
         <section className="relative overflow-hidden">
           <div className="absolute inset-0">
-            <NetworkBackground />
+            <LatticeScene />
           </div>
           <div className="bg-mesh pointer-events-none absolute inset-0" />
 
-          <RevealGroup
-            className="relative mx-auto flex max-w-6xl flex-col gap-10 px-6 pt-44 pb-28"
-            stagger={0.14}
-          >
-            <RevealItem>
-              <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">
-                Senior Full Stack Developer — E-Commerce Architect &amp; Team Lead
-              </p>
-            </RevealItem>
+          <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-start gap-10 px-6 pt-36 pb-28 lg:grid-cols-[1fr_280px] lg:gap-16 lg:pt-44">
+            <RevealGroup className="order-2 flex flex-col gap-10 lg:order-1" stagger={0.14}>
+              <RevealItem>
+                <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">
+                  Senior Full Stack Developer — E-Commerce Architect &amp; Team Lead
+                </p>
+              </RevealItem>
 
-            <RevealItem>
-              <h1 className="font-display max-w-4xl text-6xl font-medium leading-[1.05] tracking-tight sm:text-7xl">
-                Hi, I&apos;m Igli.
-                <br />
-                <span className="text-gradient">I architect storefronts</span>
-                <br />
-                that hold up at scale.
-              </h1>
-            </RevealItem>
+              <RevealItem>
+                <h1 className="font-display max-w-4xl text-5xl font-medium leading-[1.05] tracking-tight sm:text-7xl">
+                  Hi, I&apos;m Igli.
+                  <br />
+                  <span className="text-gradient">I architect storefronts</span>
+                  <br />
+                  that hold up at scale.
+                </h1>
+              </RevealItem>
 
-            <RevealItem>
-              <p className="max-w-xl text-lg leading-8 text-muted">
-                I turn e-commerce requirements into fast, maintainable platforms —
-                Shopify, BigCommerce and Magento on the front, React.js, Next.js and
-                Node.js underneath. Based in Tirana, Albania, leading a development
-                team at Eurostep Srl.
-              </p>
-            </RevealItem>
+              <RevealItem>
+                <p className="max-w-xl text-lg leading-8 text-muted">
+                  I turn e-commerce requirements into fast, maintainable platforms —
+                  Shopify, BigCommerce and Magento on the front, React.js, Next.js and
+                  Node.js underneath. Based in Tirana, Albania, leading a development
+                  team at Eurostep Srl.
+                </p>
+              </RevealItem>
 
-            <RevealItem>
-              <div className="flex flex-wrap gap-4">
-                <Magnetic>
-                  <a
-                    href="#work"
-                    className="inline-block rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
-                  >
-                    See the work →
-                  </a>
-                </Magnetic>
-                <Magnetic>
-                  <a
-                    href="#contact"
-                    className="inline-block rounded-full border border-border px-7 py-3.5 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
-                  >
-                    Book a call
-                  </a>
-                </Magnetic>
-              </div>
-            </RevealItem>
+              <RevealItem>
+                <div className="flex flex-wrap gap-4">
+                  <Magnetic>
+                    <a
+                      href="#work"
+                      className="inline-block rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
+                    >
+                      See the work →
+                    </a>
+                  </Magnetic>
+                  <Magnetic>
+                    <a
+                      href="#contact"
+                      className="inline-block rounded-full border border-border px-7 py-3.5 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
+                    >
+                      Book a call
+                    </a>
+                  </Magnetic>
+                </div>
+              </RevealItem>
 
-            <RevealItem>
-              <dl className="mt-6 grid grid-cols-1 gap-8 border-t border-border-soft pt-10 sm:grid-cols-3">
-                {stats.map((stat) => (
-                  <div key={stat.label}>
-                    <dt className="font-display text-5xl font-medium text-foreground">
-                      <Counter value={stat.value} suffix={stat.suffix} />
-                    </dt>
-                    <dd className="mt-2 text-sm text-muted">{stat.label}</dd>
-                  </div>
-                ))}
-              </dl>
-            </RevealItem>
-          </RevealGroup>
+              <RevealItem>
+                <dl className="mt-6 grid grid-cols-1 gap-8 border-t border-border-soft pt-10 sm:grid-cols-3">
+                  {stats.map((stat) => (
+                    <div key={stat.label}>
+                      <dt className="font-display text-5xl font-medium text-foreground">
+                        <Counter value={stat.value} suffix={stat.suffix} />
+                      </dt>
+                      <dd className="mt-2 text-sm text-muted">{stat.label}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </RevealItem>
+            </RevealGroup>
+
+            <div className="order-1 lg:order-2 lg:mt-8 lg:justify-self-end">
+              <PhotoFrame />
+            </div>
+          </div>
 
           <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 sm:flex">
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-soft">Scroll</span>
@@ -193,8 +199,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* What I do */}
-        <section className="mx-auto max-w-6xl px-6 py-28">
+        {/* What I do — cinematic scroll reveal */}
+        <section className="mx-auto max-w-6xl px-6 pt-28">
           <RevealGroup>
             <RevealItem>
               <h2 className="font-display text-4xl font-medium tracking-tight sm:text-5xl">
@@ -204,46 +210,25 @@ export default function Home() {
             <RevealItem>
               <p className="mt-4 max-w-2xl text-muted">
                 A storefront is only as good as the architecture under it. I own that
-                layer — from the first component to the team that ships it.
+                layer — from the first component to the team that ships it. Keep
+                scrolling.
               </p>
             </RevealItem>
           </RevealGroup>
-
-          <RevealGroup className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3" stagger={0.1}>
-            {[
-              {
-                n: "01",
-                title: "Architect",
-                body: "Multi-platform storefronts on Shopify, BigCommerce and Magento, built for performance and reuse.",
-              },
-              {
-                n: "02",
-                title: "Lead",
-                body: "Plan the work, mentor the team, and own the code review bar that keeps the codebase scalable.",
-              },
-              {
-                n: "03",
-                title: "Ship",
-                body: "React.js, Next.js, TypeScript and Tailwind CSS on top of Node.js — full stack, end to end.",
-              },
-            ].map((item) => (
-              <RevealItem key={item.title}>
-                <motion.div
-                  whileHover={{ y: -6 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                  className="group h-full rounded-2xl border border-border bg-surface p-7 transition-colors hover:border-accent/50"
-                >
-                  <span className="font-mono text-xs text-muted-soft">{item.n}</span>
-                  <h3 className="font-display mt-3 text-xl font-medium text-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-muted">{item.body}</p>
-                  <div className="mt-6 h-px w-8 bg-border transition-all duration-300 group-hover:w-16 group-hover:bg-accent" />
-                </motion.div>
-              </RevealItem>
-            ))}
-          </RevealGroup>
         </section>
+
+        <BigReveal eyebrow="01 — Architect" title="Architect">
+          Multi-platform storefronts on Shopify, BigCommerce and Magento, built for
+          performance and reuse.
+        </BigReveal>
+        <BigReveal eyebrow="02 — Lead" title="Lead">
+          Plan the work, mentor the team, and own the code review bar that keeps
+          the codebase scalable.
+        </BigReveal>
+        <BigReveal eyebrow="03 — Ship" title="Ship">
+          React.js, Next.js, TypeScript and Tailwind CSS on top of Node.js — full
+          stack, end to end.
+        </BigReveal>
 
         <div className="mx-auto max-w-6xl px-6">
           <div className="divider-diagonal" />
