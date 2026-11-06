@@ -2,12 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-
-export type Client = {
-  name: string;
-  url: string;
-  logo?: string;
-};
+import type { Client } from "../lib/data";
 
 export default function LogoWall({
   platform,

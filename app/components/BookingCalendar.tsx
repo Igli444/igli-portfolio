@@ -3,8 +3,9 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
 import NetworkBackground from "./NetworkBackground";
+import { PROFILE } from "../lib/data";
 
-const EMAIL = "iglimaksuti15@gmail.com";
+const EMAIL = PROFILE.email;
 const TIMES = ["09:00", "11:00", "13:00", "15:00", "17:00"];
 
 function buildDays(count: number) {
@@ -31,7 +32,12 @@ function buildDays(count: number) {
 
 export default function BookingCalendar() {
   const [days, setDays] = useState<ReturnType<typeof buildDays>>([]);
-  useEffect(() => setDays(buildDays(8)), []);
+  useEffect(() => {
+    // buildDays() reads the current date, which must stay client-only —
+    // reading it at module/render time breaks Next.js's static prerender.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setDays(buildDays(8));
+  }, []);
   const [dayIdx, setDayIdx] = useState<number | null>(null);
   const [time, setTime] = useState<string | null>(null);
   const [name, setName] = useState("");

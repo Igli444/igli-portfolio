@@ -1,16 +1,8 @@
 "use client";
 
-import { motion, type Variants } from "motion/react";
+import { motion } from "motion/react";
 import type { ReactNode } from "react";
-
-const item: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
-  },
-};
+import { fadeUpVariant, viewport } from "../lib/motion";
 
 export function RevealGroup({
   children,
@@ -26,7 +18,7 @@ export function RevealGroup({
       className={className}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={viewport}
       transition={{ staggerChildren: stagger }}
     >
       {children}
@@ -42,7 +34,7 @@ export function RevealItem({
   className?: string;
 }) {
   return (
-    <motion.div variants={item} className={className}>
+    <motion.div variants={fadeUpVariant} className={className}>
       {children}
     </motion.div>
   );

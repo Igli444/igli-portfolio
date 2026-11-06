@@ -93,17 +93,22 @@ function Lattice() {
   );
 }
 
+function randomDust() {
+  const arr = new Float32Array(400 * 3);
+  for (let i = 0; i < 400; i++) {
+    arr[i * 3] = (Math.random() - 0.5) * 16;
+    arr[i * 3 + 1] = (Math.random() - 0.5) * 10;
+    arr[i * 3 + 2] = (Math.random() - 0.5) * 10 - 2;
+  }
+  return arr;
+}
+
 function Dust() {
   const ref = useRef<THREE.Points>(null);
-  const positions = useMemo(() => {
-    const arr = new Float32Array(400 * 3);
-    for (let i = 0; i < 400; i++) {
-      arr[i * 3] = (Math.random() - 0.5) * 16;
-      arr[i * 3 + 1] = (Math.random() - 0.5) * 10;
-      arr[i * 3 + 2] = (Math.random() - 0.5) * 10 - 2;
-    }
-    return arr;
-  }, []);
+  // Lazy useState initializer, not useMemo: React only guarantees a lazy
+  // initializer runs once per instance, which is what this one-time random
+  // particle layout needs — useMemo is an optimization, not a correctness tool.
+  const [positions] = useState(randomDust);
 
   useFrame((_, delta) => {
     if (ref.current) ref.current.rotation.y += delta * 0.015;
@@ -121,7 +126,11 @@ function Dust() {
 
 export default function LatticeScene() {
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    // Client-only mount gate: WebGL must never render during SSR/prerender.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
   if (!mounted) return null;
 
   return (
