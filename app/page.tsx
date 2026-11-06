@@ -1,22 +1,19 @@
 "use client";
 
-import { motion } from "motion/react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 import NetworkBackground from "./components/NetworkBackground";
 import LatticeScene from "./components/LatticeScene";
 import PhotoFrame from "./components/PhotoFrame";
 import PipelineDiagram from "./components/PipelineDiagram";
 import LogoWall, { type Client } from "./components/LogoWall";
+import BookingCalendar from "./components/BookingCalendar";
+import SiteHeader from "./components/SiteHeader";
+import CursorGlow from "./components/CursorGlow";
 import ScrollProgress from "./components/ScrollProgress";
 import Counter from "./components/Counter";
 import Magnetic from "./components/Magnetic";
 import { RevealGroup, RevealItem } from "./components/Reveal";
-
-const nav = [
-  { label: "Work", href: "#work" },
-  { label: "Stack", href: "#stack" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
-];
 
 const stats = [
   { value: 5, suffix: "+", label: "years in e-commerce engineering" },
@@ -83,43 +80,26 @@ const certifications = [
 ];
 
 export default function Home() {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: heroProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroBgOpacity = useTransform(heroProgress, [0, 0.8], [1, 0.1]);
+
   return (
     <div className="flex-1 bg-grain">
+      <CursorGlow />
       <ScrollProgress />
-
-      <header className="fixed top-0 inset-x-0 z-50 border-b border-border-soft bg-background/75 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <a href="#top" className="flex items-center gap-2 font-mono text-sm tracking-tight text-foreground">
-            <span className="text-accent">{"{"}</span>
-            Igli Maksuti
-            <span className="text-accent">{"}"}</span>
-          </a>
-          <nav className="hidden items-center gap-8 font-mono text-xs uppercase tracking-widest text-muted sm:flex">
-            {nav.map((item) => (
-              <a key={item.href} href={item.href} className="group relative py-1 transition-colors hover:text-foreground">
-                {item.label}
-                <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100" />
-              </a>
-            ))}
-          </nav>
-          <Magnetic strength={0.25}>
-            <a
-              href="mailto:iglimaksuti15@gmail.com"
-              className="rounded-full border border-border px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors hover:border-accent hover:text-accent"
-            >
-              Get in touch
-            </a>
-          </Magnetic>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main id="top">
         {/* Hero */}
-        <section className="relative overflow-hidden">
-          <div className="absolute inset-0">
+        <section ref={heroRef} className="relative overflow-hidden">
+          <motion.div style={{ opacity: heroBgOpacity }} className="absolute inset-0">
             <LatticeScene />
-          </div>
-          <div className="bg-mesh pointer-events-none absolute inset-0" />
+          </motion.div>
+          <motion.div style={{ opacity: heroBgOpacity }} className="bg-mesh pointer-events-none absolute inset-0" />
 
           <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-start gap-10 px-6 pt-36 pb-28 lg:grid-cols-[1fr_280px] lg:gap-16 lg:pt-44">
             <RevealGroup className="order-2 flex flex-col gap-10 lg:order-1" stagger={0.14}>
@@ -153,7 +133,7 @@ export default function Home() {
                   <Magnetic>
                     <a
                       href="#work"
-                      className="inline-block rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
+                      className="inline-block rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background transition-all hover:opacity-90 hover:shadow-[0_0_30px_-6px_var(--accent)]"
                     >
                       See the work →
                     </a>
@@ -161,7 +141,7 @@ export default function Home() {
                   <Magnetic>
                     <a
                       href="#contact"
-                      className="inline-block rounded-full border border-border px-7 py-3.5 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
+                      className="inline-block rounded-full border border-border px-7 py-3.5 text-sm font-medium transition-all hover:border-accent hover:text-accent hover:shadow-[0_0_30px_-6px_var(--accent)]"
                     >
                       Book a call
                     </a>
@@ -356,51 +336,61 @@ export default function Home() {
 
         {/* Contact */}
         <section id="contact" className="mx-auto max-w-6xl px-6 pb-32">
-          <RevealGroup>
+          <RevealGroup className="text-center">
             <RevealItem>
-              <div className="ring-glow relative overflow-hidden rounded-3xl border border-border bg-surface px-8 py-20 text-center">
-                <div className="pointer-events-none absolute inset-0 opacity-50">
-                  <NetworkBackground />
-                </div>
-                <div className="relative">
-                  <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">
-                    For founders &amp; agencies
-                  </p>
-                  <h2 className="font-display mx-auto mt-5 max-w-2xl text-4xl font-medium tracking-tight sm:text-5xl">
-                    Have a storefront to build or a team to lead?
-                  </h2>
-                  <p className="mx-auto mt-5 max-w-xl text-muted">
-                    Based in Tirana, Albania. Open to senior full stack and technical
-                    lead roles in e-commerce.
-                  </p>
-                  <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-                    <Magnetic>
-                      <a
-                        href="mailto:iglimaksuti15@gmail.com"
-                        className="inline-block rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
-                      >
-                        iglimaksuti15@gmail.com
-                      </a>
-                    </Magnetic>
-                    <Magnetic>
-                      <a
-                        href="https://www.linkedin.com/in/igli-maksuti-061400284/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block rounded-full border border-border px-7 py-3.5 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
-                      >
-                        LinkedIn
-                      </a>
-                    </Magnetic>
-                    <span className="rounded-full border border-border px-7 py-3.5 text-sm text-muted">
-                      +355 69 954 5105
-                    </span>
-                  </div>
-                  <p className="mt-9 font-mono text-xs text-muted-soft">
-                    Albanian (Native) · English (C1) · Italian (B2)
-                  </p>
-                </div>
+              <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">
+                For founders &amp; agencies
+              </p>
+            </RevealItem>
+            <RevealItem>
+              <h2 className="font-display mx-auto mt-5 max-w-2xl text-4xl font-medium tracking-tight sm:text-5xl">
+                Have a storefront to build or a team to lead?
+              </h2>
+            </RevealItem>
+            <RevealItem>
+              <p className="mx-auto mt-5 max-w-xl text-muted">
+                Based in Tirana, Albania. Open to senior full stack and technical
+                lead roles in e-commerce.
+              </p>
+            </RevealItem>
+          </RevealGroup>
+
+          <RevealGroup className="mt-10">
+            <RevealItem>
+              <BookingCalendar />
+            </RevealItem>
+          </RevealGroup>
+
+          <RevealGroup className="mt-10 flex flex-col items-center gap-4">
+            <RevealItem>
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <Magnetic>
+                  <a
+                    href="mailto:iglimaksuti15@gmail.com"
+                    className="inline-block rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
+                  >
+                    iglimaksuti15@gmail.com
+                  </a>
+                </Magnetic>
+                <Magnetic>
+                  <a
+                    href="https://www.linkedin.com/in/igli-maksuti-061400284/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block rounded-full border border-border px-7 py-3.5 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
+                  >
+                    LinkedIn
+                  </a>
+                </Magnetic>
+                <span className="rounded-full border border-border px-7 py-3.5 text-sm text-muted">
+                  +355 69 954 5105
+                </span>
               </div>
+            </RevealItem>
+            <RevealItem>
+              <p className="font-mono text-xs text-muted-soft">
+                Albanian (Native) · English (C1) · Italian (B2)
+              </p>
             </RevealItem>
           </RevealGroup>
         </section>
