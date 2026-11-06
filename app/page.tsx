@@ -4,7 +4,8 @@ import { motion } from "motion/react";
 import NetworkBackground from "./components/NetworkBackground";
 import LatticeScene from "./components/LatticeScene";
 import PhotoFrame from "./components/PhotoFrame";
-import BigReveal from "./components/BigReveal";
+import PipelineDiagram from "./components/PipelineDiagram";
+import LogoWall, { type Client } from "./components/LogoWall";
 import ScrollProgress from "./components/ScrollProgress";
 import Counter from "./components/Counter";
 import Magnetic from "./components/Magnetic";
@@ -57,22 +58,21 @@ const roles = [
   },
 ];
 
-const projects = [
-  {
-    platform: "BigCommerce",
-    names: ["Trony", "Faba", "Milano Malpensa Boutique", "HBrands", "MissBikini", "Times"],
-    detail: "Customized themes using Handlebars and SCSS; integrated REST and GraphQL APIs.",
-  },
-  {
-    platform: "Shopify",
-    names: ["Bertoldo", "Bresciani"],
-    detail: "Customized themes using Liquid and JavaScript; developed reusable UI components.",
-  },
-  {
-    platform: "Magento",
-    names: ["Magento 2 storefronts"],
-    detail: "Configured modules and supported performance optimization.",
-  },
+const shopifyClients: Client[] = [
+  { name: "Brembo Parts", url: "https://www.bremboparts.com/europe/it", logo: "/logos/brembo.svg" },
+  { name: "Bresciani", url: "https://www.bresciani.it/", logo: "/logos/bresciani.png" },
+  { name: "Aku", url: "https://www.aku.com/", logo: "/logos/aku.png" },
+  { name: "Maison Cashmere", url: "https://maisoncashmere.com/en-eu", logo: "/logos/maison-cashmere.svg" },
+  { name: "Lotto", url: "https://www.lotto.it/?market=it", logo: "/logos/lotto.svg" },
+  { name: "Stonefly", url: "https://www.stonefly.it/en-row", logo: "/logos/stonefly.png" },
+  { name: "Parma Shop", url: "https://www.parmashop.com/", logo: "/logos/parmashop.png" },
+];
+
+const bigcommerceClients: Client[] = [
+  { name: "Trony", url: "https://www.trony.it/", logo: "/logos/trony.webp" },
+  { name: "H-Brands", url: "https://en.h-brands.com/", logo: "/logos/h-brands.png" },
+  { name: "Milan Airports Boutique", url: "https://milanairportsboutique.com/en/", logo: "/logos/milan-airports-boutique.svg" },
+  { name: "Faba", url: "https://www.myfaba.it/", logo: "/logos/faba.png" },
 ];
 
 const certifications = [
@@ -199,8 +199,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* What I do — cinematic scroll reveal */}
-        <section className="mx-auto max-w-6xl px-6 pt-28">
+        {/* What I do */}
+        <section className="mx-auto max-w-6xl px-6 py-28">
           <RevealGroup>
             <RevealItem>
               <h2 className="font-display text-4xl font-medium tracking-tight sm:text-5xl">
@@ -209,26 +209,14 @@ export default function Home() {
             </RevealItem>
             <RevealItem>
               <p className="mt-4 max-w-2xl text-muted">
-                A storefront is only as good as the architecture under it. I own that
-                layer — from the first component to the team that ships it. Keep
-                scrolling.
+                A storefront is only as good as the architecture under it. I own
+                that layer — from the first component to the team that ships it.
               </p>
             </RevealItem>
           </RevealGroup>
-        </section>
 
-        <BigReveal eyebrow="01 — Architect" title="Architect">
-          Multi-platform storefronts on Shopify, BigCommerce and Magento, built for
-          performance and reuse.
-        </BigReveal>
-        <BigReveal eyebrow="02 — Lead" title="Lead">
-          Plan the work, mentor the team, and own the code review bar that keeps
-          the codebase scalable.
-        </BigReveal>
-        <BigReveal eyebrow="03 — Ship" title="Ship">
-          React.js, Next.js, TypeScript and Tailwind CSS on top of Node.js — full
-          stack, end to end.
-        </BigReveal>
+          <PipelineDiagram />
+        </section>
 
         <div className="mx-auto max-w-6xl px-6">
           <div className="divider-diagonal" />
@@ -330,32 +318,16 @@ export default function Home() {
             </RevealItem>
             <RevealItem>
               <p className="mt-4 max-w-2xl text-muted">
-                Live storefronts built and maintained for international retail clients.
+                Live storefronts built and maintained for international retail
+                clients. Click through — they&apos;re all real, live sites.
               </p>
             </RevealItem>
           </RevealGroup>
 
-          <RevealGroup className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3" stagger={0.1}>
-            {projects.map((project) => (
-              <RevealItem key={project.platform}>
-                <motion.div
-                  whileHover={{ y: -6, boxShadow: "0 24px 60px -24px rgba(217,143,78,0.35)" }}
-                  transition={{ type: "spring", stiffness: 280, damping: 22 }}
-                  className="h-full rounded-2xl border border-border bg-surface p-7"
-                >
-                  <span className="inline-block rounded-full bg-accent-soft px-3 py-1 font-mono text-xs text-accent">
-                    {project.platform}
-                  </span>
-                  <ul className="mt-5 space-y-1 text-sm font-medium text-foreground">
-                    {project.names.map((name) => (
-                      <li key={name}>{name}</li>
-                    ))}
-                  </ul>
-                  <p className="mt-5 text-sm leading-6 text-muted">{project.detail}</p>
-                </motion.div>
-              </RevealItem>
-            ))}
-          </RevealGroup>
+          <div className="mt-14 space-y-12">
+            <LogoWall platform="Shopify" clients={shopifyClients} />
+            <LogoWall platform="BigCommerce" clients={bigcommerceClients} />
+          </div>
         </section>
 
         <div className="mx-auto max-w-6xl px-6">
