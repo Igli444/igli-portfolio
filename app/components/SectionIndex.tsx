@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 
 const SECTIONS = [
   { id: "hero", label: "Intro" },
+  { id: "now", label: "Now" },
   { id: "approach", label: "Approach" },
   { id: "stack", label: "Stack" },
   { id: "experience", label: "Experience" },

@@ -2,6 +2,7 @@ import CursorGlow from "./components/CursorGlow";
 import ScrollProgress from "./components/ScrollProgress";
 import SectionIndex from "./components/SectionIndex";
 import SiteHeader from "./components/SiteHeader";
+import NowPanel from "./components/NowPanel";
 import Hero from "./components/sections/Hero";
 import WhatIDo from "./components/sections/WhatIDo";
 import StackSection from "./components/sections/StackSection";
@@ -28,6 +29,7 @@ export default function Home() {
 
       <main id="top">
         <Hero />
+        <NowPanel />
         <WhatIDo />
         <SectionDivider />
         <StackSection />

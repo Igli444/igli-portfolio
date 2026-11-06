@@ -1,4 +1,4 @@
-import PipelineDiagram from "../PipelineDiagram";
+import ApproachCards from "../ApproachCards";
 import SplitText from "../SplitText";
 import { RevealGroup, RevealItem } from "../Reveal";
 
@@ -19,7 +19,7 @@ export default function WhatIDo() {
         </RevealItem>
       </RevealGroup>
 
-      <PipelineDiagram />
+      <ApproachCards />
     </section>
   );
 }
