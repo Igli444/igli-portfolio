@@ -1,7 +1,6 @@
-import LogoWall from "../LogoWall";
+import WorkShowcase from "../WorkShowcase";
 import SplitText from "../SplitText";
 import { RevealGroup, RevealItem } from "../Reveal";
-import { SHOPIFY_CLIENTS, BIGCOMMERCE_CLIENTS } from "../../lib/data";
 
 export default function WorkSection() {
   return (
@@ -15,14 +14,14 @@ export default function WorkSection() {
         <RevealItem>
           <p className="mt-4 max-w-2xl text-muted">
             Live storefronts built and maintained for international retail
-            clients. Click through — they&apos;re all real, live sites.
+            clients. Filter by platform, hover for the story, click through —
+            they&apos;re all real, live sites.
           </p>
         </RevealItem>
       </RevealGroup>
 
-      <div className="mt-14 space-y-12">
-        <LogoWall platform="Shopify" clients={SHOPIFY_CLIENTS} />
-        <LogoWall platform="BigCommerce" clients={BIGCOMMERCE_CLIENTS} />
+      <div className="mt-14">
+        <WorkShowcase />
       </div>
     </section>
   );

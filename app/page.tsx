@@ -1,5 +1,6 @@
 import CursorGlow from "./components/CursorGlow";
 import ScrollProgress from "./components/ScrollProgress";
+import SectionIndex from "./components/SectionIndex";
 import SiteHeader from "./components/SiteHeader";
 import Hero from "./components/sections/Hero";
 import WhatIDo from "./components/sections/WhatIDo";
@@ -22,6 +23,7 @@ export default function Home() {
     <div className="flex-1 bg-grain">
       <CursorGlow />
       <ScrollProgress />
+      <SectionIndex />
       <SiteHeader />
 
       <main id="top">

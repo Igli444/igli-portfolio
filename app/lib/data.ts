@@ -59,27 +59,99 @@ export const ROLES = [
   },
 ] as const;
 
+export type Platform = "Shopify" | "BigCommerce";
+
 export type Client = {
   name: string;
   url: string;
   logo?: string;
+  platform: Platform;
+  description: string;
+  featured?: boolean;
 };
 
-export const SHOPIFY_CLIENTS: Client[] = [
-  { name: "Brembo Parts", url: "https://www.bremboparts.com/europe/it", logo: "/logos/brembo.svg" },
-  { name: "Bresciani", url: "https://www.bresciani.it/", logo: "/logos/bresciani.png" },
-  { name: "Aku", url: "https://www.aku.com/", logo: "/logos/aku.png" },
-  { name: "Maison Cashmere", url: "https://maisoncashmere.com/en-eu", logo: "/logos/maison-cashmere.svg" },
-  { name: "Lotto", url: "https://www.lotto.it/?market=it", logo: "/logos/lotto.svg" },
-  { name: "Stonefly", url: "https://www.stonefly.it/en-row", logo: "/logos/stonefly.png" },
-  { name: "Parma Shop", url: "https://www.parmashop.com/", logo: "/logos/parmashop.png" },
-];
-
-export const BIGCOMMERCE_CLIENTS: Client[] = [
-  { name: "Trony", url: "https://www.trony.it/", logo: "/logos/trony.webp" },
-  { name: "H-Brands", url: "https://en.h-brands.com/", logo: "/logos/h-brands.png" },
-  { name: "Milan Airports Boutique", url: "https://milanairportsboutique.com/en/", logo: "/logos/milan-airports-boutique.svg" },
-  { name: "Faba", url: "https://www.myfaba.it/", logo: "/logos/faba.png" },
+export const CLIENTS: Client[] = [
+  {
+    name: "Brembo Parts",
+    url: "https://www.bremboparts.com/europe/it",
+    logo: "/logos/brembo.svg",
+    platform: "Shopify",
+    featured: true,
+    description: "World-renowned brake systems manufacturer — EU parts storefront.",
+  },
+  {
+    name: "Lotto",
+    url: "https://www.lotto.it/?market=it",
+    logo: "/logos/lotto.svg",
+    platform: "Shopify",
+    featured: true,
+    description: "Global sportswear and footwear brand.",
+  },
+  {
+    name: "Trony",
+    url: "https://www.trony.it/",
+    logo: "/logos/trony.webp",
+    platform: "BigCommerce",
+    featured: true,
+    description: "One of Italy's largest consumer electronics retail chains.",
+  },
+  {
+    name: "Aku",
+    url: "https://www.aku.com/",
+    logo: "/logos/aku.png",
+    platform: "Shopify",
+    featured: true,
+    description: "Technical mountain and hiking footwear.",
+  },
+  {
+    name: "Bresciani",
+    url: "https://www.bresciani.it/",
+    logo: "/logos/bresciani.png",
+    platform: "Shopify",
+    description: "Italian sock and hosiery maker.",
+  },
+  {
+    name: "Maison Cashmere",
+    url: "https://maisoncashmere.com/en-eu",
+    logo: "/logos/maison-cashmere.svg",
+    platform: "Shopify",
+    description: "Luxury cashmere knitwear.",
+  },
+  {
+    name: "Stonefly",
+    url: "https://www.stonefly.it/en-row",
+    logo: "/logos/stonefly.png",
+    platform: "Shopify",
+    description: "Comfort-driven Italian footwear.",
+  },
+  {
+    name: "Parma Shop",
+    url: "https://www.parmashop.com/",
+    logo: "/logos/parmashop.png",
+    platform: "Shopify",
+    description: "Parma-based online retailer, trading since 1996.",
+  },
+  {
+    name: "H-Brands",
+    url: "https://en.h-brands.com/",
+    logo: "/logos/h-brands.png",
+    platform: "BigCommerce",
+    description: "Multi-brand fashion retail.",
+  },
+  {
+    name: "Milan Airports Boutique",
+    url: "https://milanairportsboutique.com/en/",
+    logo: "/logos/milan-airports-boutique.svg",
+    platform: "BigCommerce",
+    description: "Official retail boutique for Milan's airports.",
+  },
+  {
+    name: "Faba",
+    url: "https://www.myfaba.it/",
+    logo: "/logos/faba.png",
+    platform: "BigCommerce",
+    description: "Footwear and accessories brand.",
+  },
 ];
 
 export const CERTIFICATIONS = [

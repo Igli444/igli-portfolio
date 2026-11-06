@@ -4,7 +4,7 @@ import { RevealGroup, RevealItem } from "../Reveal";
 
 export default function WhatIDo() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-28">
+    <section id="approach" className="mx-auto max-w-6xl px-6 py-28">
       <RevealGroup>
         <RevealItem>
           <h2 className="font-display text-4xl font-medium tracking-tight sm:text-5xl">

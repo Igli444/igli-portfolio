@@ -1,11 +1,19 @@
 "use client";
 
-import { motion } from "motion/react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 import SplitText from "../SplitText";
 import { RevealGroup, RevealItem } from "../Reveal";
 import { ROLES } from "../../lib/data";
 
 export default function ExperienceSection() {
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 0.75", "end 0.4"],
+  });
+  const fillHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
     <section id="experience" className="mx-auto max-w-6xl px-6 py-28">
       <RevealGroup>
@@ -16,14 +24,18 @@ export default function ExperienceSection() {
         </RevealItem>
       </RevealGroup>
 
-      <div className="relative mt-14 space-y-14">
+      <div ref={timelineRef} className="relative mt-14 space-y-14">
         <div className="absolute left-[7px] top-2 bottom-2 hidden w-px bg-border sm:block" />
+        <motion.div
+          style={{ height: fillHeight }}
+          className="absolute left-[7px] top-2 hidden w-px bg-accent sm:block"
+        />
         {ROLES.map((role) => (
           <RevealGroup
             key={role.title}
             className="relative grid grid-cols-1 gap-6 sm:grid-cols-[220px_1fr] sm:pl-10"
           >
-            <span className="absolute left-0 top-1.5 hidden h-3.5 w-3.5 -translate-x-1/2 rounded-full border-2 border-accent bg-background sm:block">
+            <span className="absolute left-0 top-1.5 z-10 hidden h-3.5 w-3.5 -translate-x-1/2 rounded-full border-2 border-accent bg-background sm:block">
               {role.current && (
                 <motion.span
                   className="absolute inset-0 rounded-full bg-accent"

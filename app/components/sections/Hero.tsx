@@ -19,7 +19,7 @@ export default function Hero() {
   const bgOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.1]);
 
   return (
-    <section ref={heroRef} className="relative overflow-hidden">
+    <section id="hero" ref={heroRef} className="relative overflow-hidden">
       <motion.div style={{ opacity: bgOpacity }} className="absolute inset-0">
         <LatticeScene />
       </motion.div>
