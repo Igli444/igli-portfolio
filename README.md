@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Igli Maksuti — Portfolio
 
-## Getting Started
+Personal portfolio site for Igli Maksuti, Senior Full Stack Developer & E‑Commerce Architect based in Tirana, Albania.
 
-First, run the development server:
+**Live:** [igli-portfolio.vercel.app](https://igli-portfolio.vercel.app)
+
+![Portfolio preview](.github/preview.png)
+
+## About
+
+A single-page portfolio built to showcase 5+ years of e-commerce engineering work (Shopify, BigCommerce, Magento) alongside modern full-stack projects. The focus is on motion and interaction design — an interactive 3D background, scroll-driven reveals, and magnetic/tilt micro-interactions — rather than a static resume page.
+
+## Features
+
+- **3D hero background** — an animated network/lattice scene built with React Three Fiber and Three.js
+- **Scroll-aware section index** — a fixed progress indicator that tracks which section is in view via `IntersectionObserver`
+- **Micro-interactions** — magnetic buttons, tilt cards, split-text and reveal animations powered by Motion (Framer Motion's successor)
+- **Content sections** — Hero, Now panel, Approach/What-I-do, Tech stack, Experience timeline, Work showcase, Credentials, and Contact
+- **Downloadable résumé** served directly from the site
+- Fully responsive, dark-themed, and built with performance in mind (Next.js App Router + Turbopack)
+
+## Tech stack
+
+| Layer | Technology |
+|---|---|
+| Framework | [Next.js 16](https://nextjs.org) (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS 4 |
+| Animation | Motion, React Three Fiber, Drei, Three.js |
+| Deployment | Vercel |
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view it locally.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build   # production build
+npm run lint    # lint the project
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project structure
 
-## Learn More
+```
+app/
+├─ components/        # UI building blocks (cards, scenes, effects)
+│  └─ sections/        # Page sections (Hero, Stack, Experience, Work, Contact, ...)
+├─ lib/                # Site content/data and motion config
+├─ layout.tsx          # Root layout, fonts, metadata
+└─ page.tsx            # Page composition
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Contact
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **LinkedIn:** [in/igli-maksuti](https://www.linkedin.com/in/igli-maksuti-061400284/)
+- **Location:** Tirana, Albania
